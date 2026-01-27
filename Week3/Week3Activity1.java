@@ -5,8 +5,10 @@ public class Week3Activity1 {
     public static void main(String[] args) {
         //Problem 1
         Scanner sc = new Scanner(System.in);
+        
         double[][] matrix = new double[3][4];
         double[][] matrix2 = new double[4][4];
+        
         System.out.println("Enter a 3-by-4 matrix row by row:");
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
