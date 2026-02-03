@@ -1,0 +1,21 @@
+Subject,PrelimGrade,MidtermGrade,FinalGrade
+:Subject      : COMPRO1
+Prelim Grade : 90
+Midterm Grade: 92
+Final Grade  : 94.5
+Subject      : COMPRO2
+Prelim Grade : 90
+Midterm Grade: 92
+Final Grade  : 94.5
+Subject      : OOP
+Prelim Grade : 90
+Midterm Grade: 92
+Final Grade  : 94.5
+Subject      : DSA
+Prelim Grade : 90
+Midterm Grade: 92
+Final Grade  : 94.5
+Subject      : MMW
+Prelim Grade : 90
+Midterm Grade: 92
+Final Grade  : 94.5
