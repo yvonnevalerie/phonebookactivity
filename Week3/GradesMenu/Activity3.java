@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Activity5 {
+public class Activity3 {
 
     static String[] subjects = new String[50];
     static double[][] grades = new double[50][3];
@@ -19,8 +19,7 @@ public class Activity5 {
             System.out.println("""
                 [1] Add Grade for subject
                 [2] Display Grades
-                [3] Search for Subject
-                [4] Exit
+                [3] Exit
             """);
 
             System.out.print("Enter Choice: ");
@@ -30,12 +29,11 @@ public class Activity5 {
             switch (choice) {
                 case 1 -> addGrade(sc);
                 case 2 -> displayGrades();
-                case 3 -> searchSubject(sc);
-                case 4 -> System.out.println("Exiting program. Goodbye!");
+                case 3 -> System.out.println("Exiting program. Goodbye!");
                 default -> System.out.println("Invalid choice!\n");
             }
 
-        } while (choice != 4);
+        } while (choice != 3);
 
         writeData();
         sc.close();
@@ -71,27 +69,6 @@ public class Activity5 {
             System.out.printf("%-15s %-10.2f %-10.2f %-10.2f\n", subjects[i], grades[i][0], grades[i][1], grades[i][2]);
         }
         System.out.println();
-    }
-
-    public static void searchSubject(Scanner sc) {
-        System.out.print("\nEnter subject name to search: ");
-        String query = sc.nextLine().trim().toLowerCase();
-
-        boolean found = false;
-        for (int i = 0; i < count; i++) {
-            if (subjects[i].toLowerCase().equals(query)) {
-                System.out.printf("Found %s: Prelim %.2f, Midterm %.2f, Finals %.2f\n",
-                        subjects[i], grades[i][0], grades[i][1], grades[i][2]);
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            System.out.println("Subject not found.\n");
-        } else {
-            System.out.println();
-        }
     }
 
     public static void writeData() throws IOException {

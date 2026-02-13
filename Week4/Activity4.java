@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,21 +13,25 @@ public class Activity4 {
     static int count = 0;
 
     public static void main(String[] args) {
-
+        
         Scanner sc = new Scanner(System.in);
         int choice;
 
         do {
-            System.out.println("Menu:");
             System.out.println("""
-                [1] Add Grade for subject
-                [2] Exit
-            """);
-            
+                    -----------------------------
+                                MENU
+                    -----------------------------
+                            """);
+            System.out.println("""
+                        [1] Add Grade for subject
+                        [2] Exit
+                    """);
+
             System.out.print("Enter Choice: ");
 
             choice = sc.nextInt();
-            sc.nextLine(); // clear buffer
+            sc.nextLine(); 
 
             if (choice == 1) {
                 System.out.print("\nEnter Subject: ");
@@ -39,15 +46,18 @@ public class Activity4 {
                 System.out.print("Enter Finals Grade: ");
                 grades[count][2] = sc.nextDouble();
 
-                sc.nextLine(); 
+                sc.nextLine();
                 count++;
                 System.out.println();
 
             } else if (choice == 2) {
-                System.out.println("Good bye baby!! Muwah!");
-            } else {
-                System.out.println("Invalid choice!\n");
-            }
+                System.out.println("Subject");
+            } else if (choice == 3) {
+                System.out.println("Good bye , darleng;3!!\n");
+                break;
+            } 
+
+            
 
         } while (choice != 2);
 
@@ -60,7 +70,7 @@ public class Activity4 {
 
         sb.append("Subject,Prelim,Midterm,Finals\n");
         for (int r = 0; r < subjects.length; r++) {
-            if(subjects[r] == null) 
+            if (subjects[r] == null)
                 break;
 
             sb.append(subjects[r]);
@@ -70,10 +80,10 @@ public class Activity4 {
             sb.append("\n");
         }
 
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("data.csv"))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("data.csv"))) {
             bw.write(sb.toString());
             bw.flush();
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
