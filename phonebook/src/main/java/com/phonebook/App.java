@@ -6,41 +6,49 @@ import com.phonebook.models.Contact;
 import com.phonebook.services.PhonebookService;
 
 public class App {
+
     public static void main(String[] args) {
 
-        PhonebookService service = new PhonebookService();
         Scanner scanner = new Scanner(System.in);
+        PhonebookService service = new PhonebookService();
+
+        String filename = "contacts.csv";
+
+        service.loadFromCSV(filename);
 
         int choice;
 
-        do{
-            System.out.println("""
-                    -----------------------
-                   |     PHONEBOOK MENU    |
-                    -----------------------
-                   | |1| ADD               |
-                   | |2| SEARCH            |
-                   | |3| REMOVE            |
-                   | |4| DISPLAY ALL       |
-                   | |5| SAVE TO CSV       |
-                   | |0| EXIT              |
-                    -----------------------
+        do {
+           System.out.println("""
+            -----------------
+           |  PHONEBOOK MENU |
+            -----------------
+             1. Add
+             2. Search
+             3. Remove
+             4. Display All
+             5. Save to CSV
+             0. Exit
+                   
+                   """);
 
-                    """);
-            System.out.print("Enter Choice:");
             choice = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); 
 
             switch (choice) {
+
                 case 1:
-                    System.out.println("Enter Name:");
+                    System.out.print("Name: ");
                     String name = scanner.nextLine();
-                    System.out.println("Enter Phone Number:");
-                    String phoneNumber = scanner.nextLine();
-                    System.out.println("Enter Email:");
+
+                    System.out.print("Phone: ");
+                    String phone = scanner.nextLine();
+
+                    System.out.print("Email: ");
                     String email = scanner.nextLine();
-                    Contact contact = new Contact(name , phoneNumber , email);
-                    service.addContact(contact);
+
+                    service.addContact(new Contact(name, phone, email));
+                    System.out.println("Contact added.");
                     break;
 
                 case 2:
@@ -48,40 +56,40 @@ public class App {
                     String searchName = scanner.nextLine();
 
                     Contact found = service.searchContact(searchName);
+
                     if (found != null) {
-                        System.out.println(found);
+                        System.out.println("Found: " +
+                                found.getName() + " | " +
+                                found.getPhoneNumber() + " | " +
+                                found.getEmail());
                     } else {
                         System.out.println("Contact not found.");
                     }
                     break;
 
-                 case 3:
+                case 3:
                     System.out.print("Enter name to remove: ");
                     String removeName = scanner.nextLine();
 
-                    boolean removed = service.removeContact(removeName);
-                    if (removed) {
-                        System.out.println("Contact removed.");
-                    } else {
-                        System.out.println("Contact not found.");
-                    }
+                    service.removeContact(removeName);
+                    System.out.println("Contact removed.");
                     break;
-                
+
                 case 4:
-                    service.displayAllContacts();
+                    service.displayAll();
                     break;
 
                 case 5:
-                    service.saveToCSV("contacts.csv");
+                    service.saveToCSV(filename);
                     break;
 
                 case 0:
-                    System.out.println("Exiting application...");
+                    service.saveToCSV(filename);
+                    System.out.println("Exiting...");
                     break;
 
-
-                 default:
-                    System.out.println("Invalid option. Try again.");
+                default:
+                    System.out.println("Invalid choice.");
             }
 
         } while (choice != 0);
@@ -89,5 +97,3 @@ public class App {
         scanner.close();
     }
 }
-
-
