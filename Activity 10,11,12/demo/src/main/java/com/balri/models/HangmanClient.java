@@ -1,4 +1,4 @@
-package com.balri.Client;
+package com.balri.models;
 
 import java.io.*;
 import java.net.*;
